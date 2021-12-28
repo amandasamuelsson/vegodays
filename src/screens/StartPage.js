@@ -1,27 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import {ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import BackgroundImage from "../components/BackgroundImage";
 
-
- function StartPage() {
+function StartPage() {
   return (
     <View style={styles.container}>
-      <ImageBackground source= {{uri: 'https://github.com/amandasamuelsson/vegodays/blob/master/assets/backgroundImage.jpg?raw=true'}} resizeMode="cover" style={styles.image} >
-      <Text style={styles.text}>VegoDays </Text>
+      <ImageBackground
+        source={{
+          uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/backgroundImage.jpg?raw=true",
+        }}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <Text style={styles.text}>VegoDays </Text>
       </ImageBackground>
-      <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#fff",
     flex: 1,
-    backgroundColor: '#fff',
-    
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center"
   },
   text: {
     color: "white",
@@ -29,9 +29,8 @@ const styles = StyleSheet.create({
     lineHeight: 84,
     fontWeight: "bold",
     textAlign: "center",
-    backgroundColor: "#000000c0"
-  }
+    backgroundColor: "#000000c0",
+  },
 });
 
-
-export default StartPage; 
+export default StartPage;
