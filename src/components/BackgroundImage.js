@@ -1,4 +1,5 @@
-import {Image, StyleSheet} from 'react-native';
+{
+  /*import {Image, StyleSheet} from 'react-native';
 
 function BackgroundImage() {
     return (
@@ -17,5 +18,7 @@ image: {
   
   },
 }); 
+*/
+}
 
-export default BackgroundImage; 
+export default BackgroundImage;
