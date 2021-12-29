@@ -1,9 +1,5 @@
-import StartPage from './src/screens/StartPage'; 
+import OnboardingInfo from "./src/screens/OnboardingInfo";
 
 export default function App() {
-  return (
-    <StartPage /> 
-  );
+  return <OnboardingInfo />;
 }
-
-
