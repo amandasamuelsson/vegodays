@@ -1,13 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import BackgroundImage from "../components/BackgroundImage";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 function StartPage() {
   return (
     <View style={styles.container}>
       <ImageBackground
         source={{
-          uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/backgroundImage.jpg?raw=true",
+          uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/onboardingInfo.jpg?raw=true",
         }}
         resizeMode="cover"
         style={styles.image}
@@ -30,6 +28,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#000000c0",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });
 

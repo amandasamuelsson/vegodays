@@ -4,16 +4,15 @@ import {
   Text,
   ImageBackground,
   Pressable,
-  Alert,
 } from "react-native";
 import Logo from "../components/Logo";
 
-function OnboardingInfo() {
+function OnboardingInfo({ navigation }) {
   return (
     <View style={styles.container}>
       <ImageBackground
         source={{
-          uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/backgroundImage.jpg?raw=true",
+          uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/onboardingInfo.jpg?raw=true",
         }}
         resizeMode="cover"
         style={styles.image}
@@ -38,7 +37,7 @@ function OnboardingInfo() {
           <View style={styles.buttonBox}>
             <Pressable
               style={styles.button}
-              onPress={() => Alert.alert("Simple Button pressed")}
+              onPress={() => navigation.navigate("OnboardingDays")}
             >
               <Text style={styles.buttonText}>Nästa</Text>
             </Pressable>
