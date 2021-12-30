@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   logo: {
     flex: 1,
     width: "90%",
-    resizeMode: 'center',
+    resizeMode: 'contain',
     alignSelf: 'center',
   },
 });
