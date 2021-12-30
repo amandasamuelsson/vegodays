@@ -24,7 +24,7 @@ function StartPage({ navigation }) {
           <Logo />
           <Pressable
                 style={styles.button}
-                onPress={() => navigation.navigate("OnboardingDays")}
+                onPress={() => navigation.navigate("OptionDays")}
                 >
                 <Text style={styles.buttonText}>Starta din vecka</Text>
               </Pressable>
