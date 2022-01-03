@@ -1,11 +1,9 @@
 import * as React from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Pressable,
 } from 'react-native';
 import Constants from 'expo-constants';
 
@@ -98,12 +96,6 @@ export default class DayPicker extends React.Component {
             </TouchableOpacity>
           )}
         />
-        <Pressable
-            style={styles.button}
-            onPress={() => navigation.navigate("StartPage")}
-            >
-            <Text style={styles.buttonText}>Nästa</Text>
-        </Pressable>
       </View>
     );
   }
@@ -121,25 +113,4 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         justifyContent: "center",
     },
-    button: {
-        alignItems: "center",
-        alignSelf: "center",
-        justifyContent: "center",
-        paddingVertical: 12,
-        paddingHorizontal: 32,
-        borderRadius: 20,
-        elevation: 3,
-        backgroundColor: "#508268",
-        color: "#fff",
-        marginBottom: 30,
-        marginTop: 10,
-        width: "50%"
-      },
-      buttonText: {
-        fontSize: 16,
-        lineHeight: 21,
-        fontWeight: "bold",
-        letterSpacing: 0.25,
-        color: "white",
-      },
 });
