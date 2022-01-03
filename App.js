@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OnboardingNotification from "./src/screens/OnboardingNotification";
 import StartPage from "./src/screens/StartPage";
 import OnboardingStarMarked from "./src/screens/OnboardingStarMarked";
+import OptionDays from "./src/screens/OptionDays";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ const App = () => {
           component={OnboardingStarMarked}
         />
         <Stack.Screen name="StartPage" component={StartPage} />
+        <Stack.Screen name="OptionDays" component={OptionDays} />
       </Stack.Navigator>
     </NavigationContainer>
   );
