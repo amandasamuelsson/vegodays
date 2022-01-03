@@ -30,6 +30,13 @@ import {
                     Markera de dagar du vill äta vegetariskt och klicka på nästa för att gå vidare.
                 </Text>
                 <DayPicker />
+                <Pressable
+                    style={styles.button}
+                    onPress={() => navigation.navigate("OptionPortions")}
+                >
+            <Text style={styles.buttonText}>Nästa</Text>
+        </Pressable>
+
             </View>
           </ImageBackground>
         </View>
@@ -44,7 +51,7 @@ import {
     },
     daypicker: {
       flex: 1,
-      height: 150,
+      height: 100,
       width: "100%",
     },
     text: {
@@ -66,34 +73,36 @@ import {
       alignItems: "center",
     },
     button: {
-      alignItems: "center",
-      alignSelf: "center",
-      justifyContent: "center",
-      paddingVertical: 12,
-      paddingHorizontal: 32,
-      borderRadius: 20,
-      elevation: 3,
-      backgroundColor: "#508268",
-      color: "#fff",
-      width: "50%"
-    },
-    buttonText: {
-      fontSize: 16,
-      lineHeight: 21,
-      fontWeight: "bold",
-      letterSpacing: 0.25,
-      color: "white",
-    },
-    daysBox: {
+        alignItems: "center",
+        alignSelf: "center",
+        justifyContent: "center",
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 20,
+        elevation: 3,
+        backgroundColor: "#508268",
+        color: "#fff",
+        marginBottom: 70,
+        marginTop: 10,
+        width: "50%"
+      },
+      buttonText: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: "bold",
+        letterSpacing: 0.25,
+        color: "white",
+      },    
+      daysBox: {
       width: "100%",
       flex: 2,
-      height: "100%",
+      height: 550,
       backgroundColor: "#fff",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      paddingTop: 50,
-      paddingBottom: 40,
+      paddingTop: 100,
+      paddingBottom: 50,
     },
     titleText: {
       fontSize: 28,
