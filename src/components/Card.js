@@ -8,7 +8,7 @@ function RecCard(){
 return (
 
 <ScrollView> 
- <Card>
+ <Card style={styles.card}>
    <CardImage 
      source={{uri: 'https://images.unsplash.com/photo-1604467715878-83e57e8bc129?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'}} 
     //  title="Top 10 South African beaches"
@@ -35,6 +35,9 @@ return (
 const styles = StyleSheet.create({
     cardTitle: {
       fontSize: 38,
+    },
+    card: {
+      width: 350,
     },
 })  
 export default RecCard;
