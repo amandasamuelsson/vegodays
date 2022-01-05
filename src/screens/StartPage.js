@@ -7,7 +7,7 @@ import {
   ScrollView
  } from "react-native";
 import Logo from "../components/Logo";
-import Card from "../components/Card"
+import Card from "../components/Card";
 
 function StartPage({ navigation }) {
   return (
@@ -38,8 +38,6 @@ function StartPage({ navigation }) {
                 horizontal={true}
               > 
                 <Card />
-                <Card />
-                <Card />
               </ScrollView>
             </View>
             <Text style={styles.titleText} >
@@ -49,8 +47,6 @@ function StartPage({ navigation }) {
               <ScrollView
                 horizontal={true}
               > 
-                <Card />
-                <Card />
                 <Card />
               </ScrollView>
             </View>
