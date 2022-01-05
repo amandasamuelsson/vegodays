@@ -9,8 +9,6 @@ import {
 import React, { useState } from "react";
 import Logo from "../components/Logo";
 import PortionsPicker from "../components/PortionsPicker";
-
-
   
   function OptionPortions({ navigation }) {
     return (
@@ -22,10 +20,10 @@ import PortionsPicker from "../components/PortionsPicker";
             resizeMode="cover"
             style={styles.image}
             >
-          <View style={styles.daypicker}>
+          <View style={styles.logoportions}>
             <Logo />
           </View>
-            <View style={styles.daysBox}>
+            <View style={styles.portionsBox}>
                 <Text style={styles.titleText} >
                     Välj antal portioner
                 </Text>
@@ -36,7 +34,7 @@ import PortionsPicker from "../components/PortionsPicker";
                 <PortionsPicker />
                 <Pressable
                     style={styles.button}
-                    onPress={() => navigation.navigate("StartPage")}
+                    onPress={() => navigation.navigate("WeeklyRecipes")}
                 >
                 <Text style={styles.buttonText}>Nästa</Text>
                 </Pressable>
@@ -54,7 +52,7 @@ import PortionsPicker from "../components/PortionsPicker";
       flex: 1,
       height: "100%",
     },
-    daypicker: {
+    logoportions: {
       flex: 1,
       height: 150,
       width: "100%",
@@ -98,7 +96,7 @@ import PortionsPicker from "../components/PortionsPicker";
         letterSpacing: 0.25,
         color: "white",
       }, 
-    daysBox: {
+      portionsBox: {
       width: "100%",
       flex: 2,
       height: "100%",

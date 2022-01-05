@@ -2,39 +2,98 @@ import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 
 import {
     ScrollView,
     StyleSheet,
+    ActivityIndicator,
+    View
   } from "react-native";
-function RecCard(){
 
-return (
+import React from 'react';
 
-<ScrollView> 
- <Card>
-   <CardImage 
-     source={{uri: 'https://images.unsplash.com/photo-1604467715878-83e57e8bc129?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'}} 
-    //  title="Top 10 South African beaches"
-   />
-   <CardTitle
-     title="Svamptacos med spetskål"
-     style={styles.cardTitle}/>
+export default class RecCard extends React.Component {
 
- 
-   <CardContent text="Måndag" />
-   <CardAction 
-    //  separator={true} 
-     inColumn={false}>     
-     <CardButton
-       onPress={() => {}}
-       title="★ Favoritmarkera"       
-       color="#FEB553"
-     />
-   </CardAction>
- </Card>
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            dataSource: null,
+        }
+    }
 
-</ScrollView>
-)};
+    componentDidMount () {
+
+        return fetch ('https://amandasamuelsson.github.io/recipes/recipes.json')
+            .then ( (response) => response.json() )
+            .then ( (responseJson) => {
+
+                this.setState({
+                    isLoading: false,
+                    dataSource: responseJson.recipes,
+                })
+
+            })
+
+        .catch((error) => {
+            console.log(error)
+        });
+
+    }
+
+    render() {
+
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator />
+                </View>
+            )
+        } else {
+
+            let recipes = this.state.dataSource.map((item) => {
+                return <ScrollView
+                horizontal={true}
+                style={styles.cardView}
+                > 
+                <Card style={styles.card}>
+                  <CardImage 
+                    source={{uri: item.img}} 
+                    style={styles.cardImg}
+                  />
+                  <CardTitle
+                    title={item.title}
+                    style={styles.cardTitle}/>
+               
+                
+                  <CardContent text="Måndag" />
+                  <CardAction 
+                   //  separator={true} 
+                    inColumn={false}>     
+                    <CardButton
+                      onPress={() => {}}
+                      title="★ Favoritmarkera"       
+                      color="#FEB553"
+                    />
+                  </CardAction>
+                </Card>
+               </ScrollView>
+            });
+            return (
+              <View style={styles.container}>
+                  {recipes}
+              </View>
+            );
+          }
+        }
+      }
 const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+    },
     cardTitle: {
       fontSize: 38,
     },
-})  
-export default RecCard;
+    card: {
+      width: 350,
+    },
+    cardImg: {
+      backgroundColor: '#fff',
+    },
+});  
