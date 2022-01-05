@@ -1,11 +1,11 @@
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
+import {
+  StyleSheet,
+  Text,
+  View,
   ImageBackground,
   Pressable,
-  ScrollView
- } from "react-native";
+  ScrollView,
+} from "react-native";
 import Logo from "../components/Logo";
 import Card from "../components/Card";
 
@@ -19,34 +19,34 @@ function StartPage({ navigation }) {
           }}
           resizeMode="cover"
           style={styles.image}
-          >
-        <View style={styles.startWeek}>
-          <Logo />
-          <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate("OptionDays")}
-                >
-                <Text style={styles.buttonText}>Starta din vecka</Text>
-              </Pressable>
-        </View>
+        >
+          <View style={styles.startWeek}>
+            <Logo />
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("OptionDays")}
+            >
+              <Text style={styles.buttonText}>Starta din vecka</Text>
+            </Pressable>
+          </View>
           <View style={styles.startBox}>
-            <Text style={styles.titleText} >
-              Veckans recept
-            </Text>
+            <Text style={styles.titleText}>Veckans recept</Text>
             <View style={styles.weekRecipes}>
-              <ScrollView
-                horizontal={true}
-              > 
+              <ScrollView horizontal={true}>
                 <Card />
               </ScrollView>
             </View>
-            <Text style={styles.titleText} >
+            <Text style={styles.titleText}>
               Favoritrecept
+              <Pressable
+                style={styles.link}
+                onPress={() => navigation.navigate("StarMarkedRecipes")}
+              >
+                <Text style={styles.linkText}>Visa alla</Text>
+              </Pressable>
             </Text>
             <View style={styles.weekRecipes}>
-              <ScrollView
-                horizontal={true}
-              > 
+              <ScrollView horizontal={true}>
                 <Card />
               </ScrollView>
             </View>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#508268",
     color: "#fff",
     marginBottom: 50,
-    width: "50%"
+    width: "50%",
   },
   buttonText: {
     fontSize: 16,
