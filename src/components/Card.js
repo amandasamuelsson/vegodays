@@ -47,8 +47,9 @@ export default class RecCard extends React.Component {
             )
         } else {
 
-            let recipes = this.state.dataSource.map((item) => {
-                return <ScrollView
+            let recipes = this.state.dataSource.map((item, key) => {
+                return <ScrollView 
+                key={key}
                 horizontal={true}
                 style={styles.cardView}
                 > 
