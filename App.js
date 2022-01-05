@@ -10,6 +10,8 @@ import OptionDays from "./src/screens/OptionDays";
 import DayPicker from "./src/components/WeekdayPicker";
 import OptionPortions from "./src/screens/OptionPortions";
 import PortionsPicker from "./src/components/PortionsPicker";
+import DetailRecipes from "./src/screens/DetailRecipes";
+import StarMarkedRecipes from "./src/screens/StarMarkedRecipes";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -32,6 +34,8 @@ const App = () => {
         <Stack.Screen name="DayPicker" component={DayPicker} />
         <Stack.Screen name="OptionPortions" component={OptionPortions} />
         <Stack.Screen name="PortionsPicker" component={PortionsPicker} />
+        <Stack.Screen name="DetailRecipes" component={DetailRecipes} />
+        <Stack.Screen name="StarMarkedRecipes" component={StarMarkedRecipes} />
       </Stack.Navigator>
     </NavigationContainer>
   );
