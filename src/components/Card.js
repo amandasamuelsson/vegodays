@@ -1,84 +1,30 @@
-import {
-  Card,
-  CardTitle,
-  CardContent,
-  CardAction,
-  CardButton,
-  CardImage,
-} from "react-native-cards";
-import { ScrollView, StyleSheet, ActivityIndicator, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { View } from "react-native-web";
 
-import React from "react";
-
-export default class RecCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      dataSource: null,
-    };
-  }
-
-  componentDidMount() {
-    return fetch("https://amandasamuelsson.github.io/recipes/recipes.json")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.recipes,
-        });
-      })
-
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator />
-        </View>
-      );
-    } else {
-      let recipes = this.state.dataSource.map((item, id) => {
-        return (
-          <ScrollView key={id} horizontal={true} style={styles.cardView}>
-            <Card style={styles.card}>
-              <CardImage source={{ uri: item.img }} style={styles.cardImg} />
-              <CardTitle title={item.title} style={styles.cardTitle} />
-
-              <CardContent text="Måndag" />
-              <CardAction
-                //  separator={true}
-                inColumn={false}
-              >
-                <CardButton
-                  onPress={() => {}}
-                  title="★ Favoritmarkera"
-                  color="#FEB553"
-                />
-              </CardAction>
-            </Card>
-          </ScrollView>
-        );
-      });
-      return <View style={styles.container}>{recipes}</View>;
-    }
-  }
+export default function Card(props) {
+  return (
+    <View style={styles.card}>
+      <ScrollView horizontal={true} style={styles.cardContent}>
+        {props.children}
+      </ScrollView>
+    </View>
+  );
 }
+
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-  },
-  cardTitle: {
-    fontSize: 38,
-  },
   card: {
-    width: 350,
-  },
-  cardImg: {
+    borderRadius: 6,
+    elevation: 3,
     backgroundColor: "#fff",
+    shadowOffset: { width: 1, height: 1 },
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    marginHorizontal: 4,
+    marginVertical: 6,
+  },
+  cardContent: {
+    marginHorizontal: 18,
+    marginVertical: 20,
   },
 });
