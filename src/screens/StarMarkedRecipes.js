@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from "react-native";
 import Logo from "../components/Logo";
-import Card from "../components/Card";
 
 function StarMarkedRecipes({ navigation }) {
   return (
@@ -26,9 +25,7 @@ function StarMarkedRecipes({ navigation }) {
           <View style={styles.startBox}>
             <Text style={styles.titleText}>Favoritrecept</Text>
             <View style={styles.weekRecipes}>
-              <ScrollView horizontal={false}>
-                <Card />
-              </ScrollView>
+              <ScrollView horizontal={false}></ScrollView>
             </View>
           </View>
         </ImageBackground>

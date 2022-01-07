@@ -74,7 +74,7 @@ function StartPage({ navigation }) {
     },
     {
       id: 7,
-      title: "Svampramen med shitake och ostronskivling",
+      title: "Svampramen med shitake",
       img: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/ramen.jpg?raw=true",
       ingredients:
         "Svampbuljong: 0.5 liten gul lök. 0.5 liten morot. 0.5 vitlöksklyfta. 1/4 förp torkad karljohanssvamp (1/2 förp motsvarar 30 g) 0.5 l svampbuljong. 0.5 förp ostronskivling (à 150 g). olja till fritering. 0.5 förp shiitakesvamp (à 150 g). 0.5 msk färskriven ingefära. 1 vitlöksklyfta. 1 msk rapsolja. 0.5 tsk sesamolja. 0.5 msk japansk soja. Topping: 1 salladslökar. 1/2 spansk peppar. 2 port nudlar (gärna udon). 1 ägg ",
@@ -92,7 +92,7 @@ function StartPage({ navigation }) {
     },
     {
       id: 9,
-      title: "Svamptacos med spetskål och grön tahinisås",
+      title: "Svamptacos med grön tahinisås",
       img: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/taco.jpg?raw=true",
       ingredients:
         "150 g blandad svamp (t ex ostronskivling, portabello och champinjon). 1stor rödlök. 0.5 dl rapsolja. 0.5 dl japansk soja. 0.5 tsk torkad timjan. 0.5 krm svartpeppar. Grön tahinisås: 0.5 kruka koriander. 0.5 kruka bladpersilja. 0.5 riven vitlöksklyfta. 0.5 dl ljus tahini. 1 msk färskpressad limejuice. 1 tsk strösocker. 1 krm salt. 0.5 dl vatten. Tillbehör: 125 g spetskål. 0.5 lime. 6 små tortillabröd. 0.5 dl rostade pumpakärnor",
@@ -141,13 +141,9 @@ function StartPage({ navigation }) {
           <View style={styles.startBox}>
             <Text style={styles.titleText}>
               Veckans recept
-              <TouchableOpacity
-                style={styles.link}
-                onPress={() => navigation.navigate("StarMarkedRecipes")}
-              ></TouchableOpacity>
               <Pressable
                 style={styles.link}
-                onPress={() => navigation.push("StarMarkedRecipes")}
+                onPress={() => navigation.navigate("StarMarkedRecipes")}
               >
                 <Text style={styles.linkText}>Visa alla</Text>
               </Pressable>
@@ -155,9 +151,11 @@ function StartPage({ navigation }) {
 
             <View style={styles.weekRecipes}>
               <FlatList
+                horizontal={true}
                 data={recipes}
                 renderItem={({ item }) => (
                   <TouchableOpacity
+                    style={styles.cardStyle}
                     onPress={() => navigation.navigate("DetailRecipes", item)}
                   >
                     <Text style={styles.titleText}>{item.title}</Text>
@@ -177,15 +175,17 @@ function StartPage({ navigation }) {
                 )}
               />
             </View>
-            <Text style={styles.titleText}>
-              Favoritrecept
-              <Pressable
-                style={styles.link}
-                onPress={() => navigation.navigate("StarMarkedRecipes")}
-              >
-                <Text style={styles.linkText}>Visa alla</Text>
-              </Pressable>
-            </Text>
+            <View>
+              <Text style={styles.titleText}>
+                Favoritrecept
+                <Pressable
+                  style={styles.link}
+                  onPress={() => navigation.navigate("StarMarkedRecipes")}
+                >
+                  <Text style={styles.linkText}>Visa alla</Text>
+                </Pressable>
+              </Text>
+            </View>
             <View style={styles.weekRecipes}></View>
           </View>
         </ImageBackground>
@@ -248,13 +248,18 @@ const styles = StyleSheet.create({
   },
   img: {
     height: 200,
-    width: "90%",
+    width: 300,
     borderRadius: 10,
     alignItems: "center",
     alignSelf: "center",
     justifyContent: "center",
   },
   linkText: { fontSize: 11, paddingTop: 20, paddingLeft: 10 },
+
+  cardStyle: {
+    width: 350,
+    paddingLeft: 30,
+  },
 });
 
 export default StartPage;

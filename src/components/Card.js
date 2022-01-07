@@ -1,12 +1,10 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { View } from "react-native-web";
 
 export default function Card(props) {
   return (
     <View style={styles.card}>
-      <ScrollView horizontal={true} style={styles.cardContent}>
-        {props.children}
-      </ScrollView>
+      <View style={styles.cardContent}>{props.children}</View>
     </View>
   );
 }
