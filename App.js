@@ -36,7 +36,16 @@ const App = () => {
         <Stack.Screen name="DayPicker" component={DayPicker} />
         <Stack.Screen name="OptionPortions" component={OptionPortions} />
         <Stack.Screen name="PortionsPicker" component={PortionsPicker} />
-        <Stack.Screen name="DetailRecipes" component={DetailRecipes} />
+        <Stack.Screen
+          name="DetailRecipes"
+          component={DetailRecipes}
+          options={({ route }) => ({
+            title: route.params.title,
+            img: route.params.img,
+            instructions: route.params.instructions,
+            ingredients: route.params.ingredients,
+          })}
+        />
         <Stack.Screen name="StarMarkedRecipes" component={StarMarkedRecipes} />
         <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
         <Stack.Screen name="Reminders" component={Reminders} />
