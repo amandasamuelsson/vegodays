@@ -1,5 +1,6 @@
 import OnboardingInfo from "./src/screens/OnboardingInfo";
 import * as React from "react";
+import { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import OnboardingDays from "./src/screens/OnboardingDays";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -14,23 +15,55 @@ import DetailRecipes from "./src/screens/DetailRecipes";
 import StarMarkedRecipes from "./src/screens/StarMarkedRecipes";
 import WeeklyRecipes from "./src/screens/WeeklyRecipes";
 import Reminders from "./src/components/Reminders";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+const Stack = createNativeStackNavigator();
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
 
-  return (
-    <NavigationContainer>
+  useEffect(() => {
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if(value == null) {
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        setIsFirstLaunch(true);
+      } else {
+        setIsFirstLaunch(false);
+      }
+    })
+
+  }, []);
+
+  if(isFirstLaunch == null) {
+    return null;
+  } else if ( isFirstLaunch == true ) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="OnboardingInfo" component={OnboardingInfo} />
+          <Stack.Screen name="OnboardingDays" component={OnboardingDays} />
+          <Stack.Screen name="OnboardingNotification" component={OnboardingNotification} />
+          <Stack.Screen name="OnboardingStarMarked" component={OnboardingStarMarked} />
+          <Stack.Screen name="StartPage" component={StartPage} />
+        </Stack.Navigator>
+    </NavigationContainer>
+    );
+  } else {
+
+    
+    return (
+      <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="OnboardingInfo" component={OnboardingInfo} />
+        {/* <Stack.Screen name="OnboardingInfo" component={OnboardingInfo} />
         <Stack.Screen name="OnboardingDays" component={OnboardingDays} />
         <Stack.Screen
-          name="OnboardingNotification"
-          component={OnboardingNotification}
+        name="OnboardingNotification"
+        component={OnboardingNotification}
         />
         <Stack.Screen
-          name="OnboardingStarMarked"
-          component={OnboardingStarMarked}
-        />
+        name="OnboardingStarMarked"
+        component={OnboardingStarMarked}
+      /> */}
         <Stack.Screen name="StartPage" component={StartPage} />
         <Stack.Screen name="OptionDays" component={OptionDays} />
         <Stack.Screen name="DayPicker" component={DayPicker} />
@@ -45,7 +78,7 @@ const App = () => {
             instructions: route.params.instructions,
             ingredients: route.params.ingredients,
           })}
-        />
+          />
         <Stack.Screen name="StarMarkedRecipes" component={StarMarkedRecipes} />
         <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
         <Stack.Screen name="Reminders" component={Reminders} />
@@ -53,5 +86,6 @@ const App = () => {
     </NavigationContainer>
   );
 };
+}
 
 export default App;
