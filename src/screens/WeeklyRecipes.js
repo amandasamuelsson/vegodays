@@ -5,15 +5,30 @@ import {
   ImageBackground,
   Pressable,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import Logo from "../components/Logo";
 import Reminders from "../components/Reminders";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function WeeklyRecipes({ navigation }) {
+  displayData = async () => {
+    try {
+      let days = await AsyncStorage.getItem("data.selected");
+      let parsed = JSON.parse(days);
+      alert(days);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
+        <TouchableOpacity onPress={displayData}>
+          <Text>Click to display data</Text>
+        </TouchableOpacity>
         <ImageBackground
           source={{
             uri: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/onboardingInfo.jpg?raw=true",
