@@ -52,7 +52,7 @@ export default class DayPicker extends React.Component {
   }
 
   saveData = async () => {
-    let name = "Michal";
+    let name = "Amanda";
     AsyncStorage.setItem("user", name);
   };
 
@@ -70,7 +70,7 @@ export default class DayPicker extends React.Component {
     for (let data of renderData) {
       if (data.id == id) {
         data.selected = data.selected == null ? true : !data.selected;
-        AsyncStorage.setItem("Data", JSON.stringify(data.selected));
+        AsyncStorage.setItem("data.selected", JSON.stringify(Data));
 
         break;
       }
@@ -83,6 +83,10 @@ export default class DayPicker extends React.Component {
       <View>
         <TouchableOpacity onPress={this.saveData}>
           <Text>Click to save data</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this.displayData}>
+          <Text>Click to display data</Text>
         </TouchableOpacity>
 
         <FlatList
