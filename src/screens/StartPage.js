@@ -13,6 +13,7 @@ import Logo from "../components/Logo";
 import { useState } from "react";
 import Card from "../components/Card";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { CardButton } from "react-native-cards";
 
@@ -118,6 +119,15 @@ function StartPage({ navigation }) {
         "Koka glasnudlarna enligt paketets anvisningar. Skölj kallt och sila. Strimla morötter, purjolök, gurka och rödkål. hacka koriander och cashewnötter. Blötlägg ett rispapper ark i taget ca 1 min. Lägg på skärbräda och fyll med risnudlar, grönsaker, nötter och koriander. Rulla ihop till tajta rullar och ställ kallt. Dippsåser: Blanda smetana med soja och ställ kallt. Lös upp sockret i limesaften. Tillsätt chili och vitlök.",
     },
   ]);
+  displayData = async () => {
+    try {
+      let days = await AsyncStorage.getItem("data.selected");
+      let parsed = JSON.parse(days);
+      alert(days);
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <ScrollView>

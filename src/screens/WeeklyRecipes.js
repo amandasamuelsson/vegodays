@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useState } from "react";
 import Logo from "../components/Logo";
@@ -50,6 +51,30 @@ function WeeklyRecipes({ navigation }) {
             </View>
             <View style={styles.cardBox}>
               <Text style={styles.titleText}>Veckans recept</Text>
+              <FlatList
+                horizontal={true}
+                data={displayData}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.cardStyle}
+                    onPress={() => navigation.navigate("DetailRecipes", item)}
+                  >
+                    <Text style={styles.titleText}>{item.title}</Text>
+                    <Image
+                      source={{
+                        uri: item.img,
+                      }}
+                      style={styles.img}
+                    />
+                    <CardButton
+                      onPress={() => {}}
+                      title="★ Favoritmarkera"
+                      color="#FEB553"
+                      style={{ alignItems: "flex-start" }}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
             </View>
 
             <Pressable
