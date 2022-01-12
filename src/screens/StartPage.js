@@ -13,6 +13,7 @@ import Logo from "../components/Logo";
 import { useState } from "react";
 import Card from "../components/Card";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { CardButton } from "react-native-cards";
 
@@ -118,6 +119,23 @@ function StartPage({ navigation }) {
         "Koka glasnudlarna enligt paketets anvisningar. Skölj kallt och sila. Strimla morötter, purjolök, gurka och rödkål. hacka koriander och cashewnötter. Blötlägg ett rispapper ark i taget ca 1 min. Lägg på skärbräda och fyll med risnudlar, grönsaker, nötter och koriander. Rulla ihop till tajta rullar och ställ kallt. Dippsåser: Blanda smetana med soja och ställ kallt. Lös upp sockret i limesaften. Tillsätt chili och vitlök.",
     },
   ]);
+  displayData = async () => {
+    try {
+      let days = await AsyncStorage.getItem("data.selected");
+      let parsed = JSON.parse(days);
+      alert(days);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const [favoriteList, setfavoriteList] = useState([]);
+
+  const pressHandler = (item) => {
+    favoriteList.push(item);
+
+    console.log(favoriteList);
+  };
 
   return (
     <ScrollView>
@@ -152,6 +170,7 @@ function StartPage({ navigation }) {
             <View style={styles.weekRecipes}>
               <FlatList
                 horizontal={true}
+                //   keyExtractor={(item) => item.id}
                 data={recipes}
                 renderItem={({ item }) => (
                   <TouchableOpacity
@@ -166,7 +185,7 @@ function StartPage({ navigation }) {
                       style={styles.img}
                     />
                     <CardButton
-                      onPress={() => {}}
+                      onPress={() => pressHandler(item)}
                       title="★ Favoritmarkera"
                       color="#FEB553"
                       style={{ alignItems: "flex-start" }}
@@ -186,7 +205,33 @@ function StartPage({ navigation }) {
                 </Pressable>
               </Text>
             </View>
-            <View style={styles.weekRecipes}></View>
+            <View style={styles.weekRecipes}>
+              <FlatList
+                horizontal={true}
+                //   keyExtractor={(item) => item.id}
+                data={favoriteList}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.cardStyle}
+                    onPress={() => navigation.navigate("DetailRecipes", item)}
+                  >
+                    <Text style={styles.titleText}>{item.title}</Text>
+                    <Image
+                      source={{
+                        uri: item.img,
+                      }}
+                      style={styles.img}
+                    />
+                    <CardButton
+                      //onPress={() => pressHandler(item)}
+                      title="★ Ta bort favoritmarkering"
+                      color="#FEB553"
+                      style={{ alignItems: "flex-start" }}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
           </View>
         </ImageBackground>
       </View>
