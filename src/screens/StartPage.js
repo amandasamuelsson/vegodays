@@ -129,6 +129,14 @@ function StartPage({ navigation }) {
     }
   };
 
+  const [favoriteList, setfavoriteList] = useState([]);
+
+  const pressHandler = (item) => {
+    favoriteList.push(item);
+
+    console.log(favoriteList);
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -162,6 +170,7 @@ function StartPage({ navigation }) {
             <View style={styles.weekRecipes}>
               <FlatList
                 horizontal={true}
+                //   keyExtractor={(item) => item.id}
                 data={recipes}
                 renderItem={({ item }) => (
                   <TouchableOpacity
@@ -176,7 +185,7 @@ function StartPage({ navigation }) {
                       style={styles.img}
                     />
                     <CardButton
-                      onPress={() => {}}
+                      onPress={() => pressHandler(item)}
                       title="★ Favoritmarkera"
                       color="#FEB553"
                       style={{ alignItems: "flex-start" }}
@@ -196,7 +205,33 @@ function StartPage({ navigation }) {
                 </Pressable>
               </Text>
             </View>
-            <View style={styles.weekRecipes}></View>
+            <View style={styles.weekRecipes}>
+              <FlatList
+                horizontal={true}
+                //   keyExtractor={(item) => item.id}
+                data={favoriteList}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.cardStyle}
+                    onPress={() => navigation.navigate("DetailRecipes", item)}
+                  >
+                    <Text style={styles.titleText}>{item.title}</Text>
+                    <Image
+                      source={{
+                        uri: item.img,
+                      }}
+                      style={styles.img}
+                    />
+                    <CardButton
+                      //onPress={() => pressHandler(item)}
+                      title="★ Ta bort favoritmarkering"
+                      color="#FEB553"
+                      style={{ alignItems: "flex-start" }}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
           </View>
         </ImageBackground>
       </View>
