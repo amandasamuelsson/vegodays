@@ -129,7 +129,13 @@ function StartPage({ navigation }) {
     }
   };
 
-  const [favoriteList, setfavoriteList] = useState([]);
+  const [favoriteList, setfavoriteList] = useState([
+    {
+      id: Number,
+      title: String,
+      img: String,
+    }
+  ]);
 
   const pressHandler = (item) => {
     favoriteList.push(item);
