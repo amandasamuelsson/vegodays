@@ -5,10 +5,28 @@ import {
   ImageBackground,
   Pressable,
   ScrollView,
+  FlatList,
+  TouchableOpacity,
 } from "react-native";
 import Logo from "../components/Logo";
+import { CardButton } from "react-native-cards";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 
 function StarMarkedRecipes({ navigation }) {
+  displayData = async () => {
+    try {
+      let addedFavorite = await AsyncStorage.getItem("favorite");
+      console.log(addedFavorite);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    displayData();
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -24,9 +42,36 @@ function StarMarkedRecipes({ navigation }) {
           </View>
           <View style={styles.startBox}>
             <Text style={styles.titleText}>Favoritrecept</Text>
-            <View style={styles.weekRecipes}>
-              <ScrollView horizontal={false}></ScrollView>
-            </View>
+            <View style={styles.weekRecipes}></View>
+
+            <TouchableOpacity onPress={displayData}>
+              <Text>Click to display data</Text>
+            </TouchableOpacity>
+            <FlatList
+              horizontal={true}
+              //   keyExtractor={(item) => item.id}
+              data={displayData}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.cardStyle}
+                  onPress={() => navigation.navigate("DetailRecipes", item)}
+                >
+                  <Text style={styles.titleText}>{addedFavorite.title}</Text>
+                  <Image
+                    source={{
+                      uri: item.img,
+                    }}
+                    style={styles.img}
+                  />
+                  <CardButton
+                    onPress={() => removeFavorite(item.id)}
+                    title="★ Ta bort favoritmarkering"
+                    color="#FEB553"
+                    style={{ alignItems: "flex-start" }}
+                  />
+                </TouchableOpacity>
+              )}
+            />
           </View>
         </ImageBackground>
       </View>
