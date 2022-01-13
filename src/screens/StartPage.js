@@ -134,13 +134,20 @@ function StartPage({ navigation }) {
       id: Number,
       title: String,
       img: String,
-    }
+    },
   ]);
 
   const pressHandler = (item) => {
     favoriteList.push(item);
+    AsyncStorage.setItem("favorite", JSON.stringify(favoriteList));
 
     console.log(favoriteList);
+  };
+
+  const removeFavorite = (id) => {
+    setfavoriteList((prevfavoriteList) => {
+      return prevfavoriteList.filter((item) => item.id != id);
+    });
   };
 
   return (
@@ -167,7 +174,7 @@ function StartPage({ navigation }) {
               Veckans recept
               <Pressable
                 style={styles.link}
-                onPress={() => navigation.navigate("StarMarkedRecipes")}
+                onPress={() => navigation.navigate("WeeklyRecipes")}
               >
                 <Text style={styles.linkText}>Visa alla</Text>
               </Pressable>
@@ -229,7 +236,7 @@ function StartPage({ navigation }) {
                       style={styles.img}
                     />
                     <CardButton
-                      //onPress={() => pressHandler(item)}
+                      onPress={() => removeFavorite(item.id)}
                       title="★ Ta bort favoritmarkering"
                       color="#FEB553"
                       style={{ alignItems: "flex-start" }}
