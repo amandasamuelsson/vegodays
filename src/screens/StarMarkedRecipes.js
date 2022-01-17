@@ -12,15 +12,17 @@ import Logo from "../components/Logo";
 import { CardButton } from "react-native-cards";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
+import { useState } from "react";
+import Card from "../components/Card";
 
 function StarMarkedRecipes({ navigation }) {
+  const [favoritCard, setfavoriteCard] = useState("");
+
   displayData = async () => {
-    try {
-      let addedFavorite = await AsyncStorage.getItem("favorite");
-      console.log(addedFavorite);
-    } catch (error) {
-      alert(error);
-    }
+    AsyncStorage.getItem("favorite").then((favoriteCard) => {
+      setfavoriteCard(favoriteCard);
+      JSON.parse(favoritCard);
+    });
   };
 
   useEffect(() => {
@@ -42,33 +44,22 @@ function StarMarkedRecipes({ navigation }) {
           </View>
           <View style={styles.startBox}>
             <Text style={styles.titleText}>Favoritrecept</Text>
-            <View style={styles.weekRecipes}></View>
+            <View style={styles.weekRecipes}>
+              <Text>{favoritCard}</Text>
+            </View>
 
-            <TouchableOpacity onPress={displayData}>
-              <Text>Click to display data</Text>
-            </TouchableOpacity>
             <FlatList
               horizontal={true}
-              //   keyExtractor={(item) => item.id}
-              data={displayData}
-              renderItem={({ item }) => (
+              //keyExtractor={(item) => item.key}
+              data={favoritCard}
+              renderItem={(item) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
-                  onPress={() => navigation.navigate("DetailRecipes", item)}
+                  onPress={() =>
+                    navigation.props.navigate("DetailRecipes", item)
+                  }
                 >
-                  <Text style={styles.titleText}>{addedFavorite.title}</Text>
-                  <Image
-                    source={{
-                      uri: item.img,
-                    }}
-                    style={styles.img}
-                  />
-                  <CardButton
-                    onPress={() => removeFavorite(item.id)}
-                    title="★ Ta bort favoritmarkering"
-                    color="#FEB553"
-                    style={{ alignItems: "flex-start" }}
-                  />
+                  <Text style={styles.titleText}>{favoritCard.title}</Text>
                 </TouchableOpacity>
               )}
             />

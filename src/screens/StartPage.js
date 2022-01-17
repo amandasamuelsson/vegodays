@@ -139,9 +139,11 @@ function StartPage({ navigation }) {
 
   const pressHandler = (item) => {
     favoriteList.push(item);
-    AsyncStorage.setItem("favorite", JSON.stringify(favoriteList));
-
-    console.log(favoriteList);
+    try {
+      AsyncStorage.setItem("favorite", JSON.stringify(favoriteList));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const removeFavorite = (id) => {
@@ -183,7 +185,7 @@ function StartPage({ navigation }) {
             <View style={styles.weekRecipes}>
               <FlatList
                 horizontal={true}
-                //   keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id}
                 data={recipes}
                 renderItem={({ item }) => (
                   <TouchableOpacity
@@ -235,6 +237,7 @@ function StartPage({ navigation }) {
                       }}
                       style={styles.img}
                     />
+
                     <CardButton
                       onPress={() => removeFavorite(item.id)}
                       title="★ Ta bort favoritmarkering"
