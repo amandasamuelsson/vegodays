@@ -45,25 +45,23 @@ const App = () => {
           <Stack.Screen name="OnboardingNotification" component={OnboardingNotification} />
           <Stack.Screen name="OnboardingStarMarked" component={OnboardingStarMarked} />
           <Stack.Screen name="StartPage" component={StartPage} />
-          <Stack.Screen name="StartPage" component={StartPage} />
-        <Stack.Screen name="OptionDays" component={OptionDays} />
-        <Stack.Screen name="DayPicker" component={DayPicker} />
-        <Stack.Screen name="OptionPortions" component={OptionPortions} />
-        <Stack.Screen name="PortionsPicker" component={PortionsPicker} />
-        <Stack.Screen
-          name="DetailRecipes"
-          component={DetailRecipes}
-          options={({ route }) => ({
-            title: route.params.title,
-            img: route.params.img,
-            instructions: route.params.instructions,
-            ingredients: route.params.ingredients,
-          })}
-          />
-        <Stack.Screen name="StarMarkedRecipes" component={StarMarkedRecipes} />
-        <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
-        <Stack.Screen name="Reminders" component={Reminders} />
-
+          <Stack.Screen name="OptionDays" component={OptionDays} />
+          <Stack.Screen name="DayPicker" component={DayPicker} />
+          <Stack.Screen name="OptionPortions" component={OptionPortions} />
+          <Stack.Screen name="PortionsPicker" component={PortionsPicker} />
+          <Stack.Screen
+            name="DetailRecipes"
+            component={DetailRecipes}
+            options={({ route }) => ({
+              title: route.params.title,
+              img: route.params.img,
+              instructions: route.params.instructions,
+              ingredients: route.params.ingredients,
+            })}
+            />
+          <Stack.Screen name="StarMarkedRecipes" component={StarMarkedRecipes} />
+          <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
+          <Stack.Screen name="Reminders" component={Reminders} />
         </Stack.Navigator>
     </NavigationContainer>
     );
@@ -73,16 +71,6 @@ const App = () => {
     return (
       <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="OnboardingInfo" component={OnboardingInfo} />
-        <Stack.Screen name="OnboardingDays" component={OnboardingDays} />
-        <Stack.Screen
-        name="OnboardingNotification"
-        component={OnboardingNotification}
-        />
-        <Stack.Screen
-        name="OnboardingStarMarked"
-        component={OnboardingStarMarked}
-      /> */}
         <Stack.Screen name="StartPage" component={StartPage} />
         <Stack.Screen name="OptionDays" component={OptionDays} />
         <Stack.Screen name="DayPicker" component={DayPicker} />
