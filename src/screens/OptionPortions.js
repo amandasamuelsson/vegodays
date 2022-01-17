@@ -1,4 +1,4 @@
-import { 
+/*import { 
     StyleSheet, 
     Text, 
     View, 
@@ -117,6 +117,6 @@ import PortionsPicker from "../components/PortionsPicker";
         alignItems: "center"
     },
   });
-  
-  
- export default OptionPortions; 
+  */
+
+export default OptionPortions;
