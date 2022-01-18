@@ -36,15 +36,33 @@ const App = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="OnboardingInfo" component={OnboardingInfo} />
-          <Stack.Screen name="OnboardingDays" component={OnboardingDays} />
+          <Stack.Screen
+            name="OnboardingInfo"
+            component={OnboardingInfo}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="OnboardingDays"
+            component={OnboardingDays}
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen
             name="OnboardingNotification"
             component={OnboardingNotification}
+            options={{
+              headerShown: false,
+            }}
           />
           <Stack.Screen
             name="OnboardingStarMarked"
             component={OnboardingStarMarked}
+            options={{
+              headerShown: false,
+            }}
           />
           <Stack.Screen name="StartPage" component={StartPage} />
           <Stack.Screen name="OptionDays" component={OptionDays} />

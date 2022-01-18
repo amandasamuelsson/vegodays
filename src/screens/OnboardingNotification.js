@@ -25,10 +25,10 @@ function OnboardingNotification({ navigation }) {
             }
             <Logo />
             <Text style={styles.infoText}>
-              För att förenkla det ytterligare för dig finns det möjlighet 
-              att slå på påminnelser i appen. Du får då en notifikation från appen 
-              som påminner om att det blir vegetariskt till middag ikväll och vad som 
-              behöver inhadlas. 
+              För att förenkla det ytterligare för dig finns det möjlighet att
+              slå på påminnelser i appen. Du får då en notifikation från appen
+              som påminner om att det blir vegetariskt till middag ikväll och
+              vad som behöver inhandlas.
             </Text>
             <View style={styles.buttonBox}>
               <Pressable
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     fontWeight: "600",
     textShadowColor: "rgba(0, 0, 0, 0.85)",
-    textShadowOffset: {width: -2, height: 3},
+    textShadowOffset: { width: -2, height: 3 },
     textShadowRadius: 5,
     lineHeight: 24,
   },
