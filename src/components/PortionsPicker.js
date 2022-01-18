@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { PickerView } from '@ant-design/react-native';
 const portions = [
   [
@@ -41,3 +41,6 @@ export default class PortionsPicker extends React.Component {
     );
   }
 }
+*/
+
+export default PortionsPicker;
