@@ -131,9 +131,13 @@ function StartPage({ navigation }) {
 
   const [favoriteList, setfavoriteList] = useState([
     {
-      id: Number,
-      title: String,
-      img: String,
+      id: 11,
+      title: "Vegetariska vårrullar",
+      img: "https://github.com/amandasamuelsson/vegodays/blob/master/assets/springrolls.jpg?raw=true",
+      ingredients:
+        "50 g Glasnudlar. 12 ark Rispapper. 1 morot. 0.5 Purjolök.  0.5 Gurka. 100 g rödkål. 0.5 kruka Koriander. 2 msk Cashewnötter. 1 dl Smetana. 1 msk Kinesisk soja. 2 msk Strösocker. Saft från 2 Lime. 1 röd chili. 1 vitlök. ",
+      instructions:
+        "Koka glasnudlarna enligt paketets anvisningar. Skölj kallt och sila. Strimla morötter, purjolök, gurka och rödkål. hacka koriander och cashewnötter. Blötlägg ett rispapper ark i taget ca 1 min. Lägg på skärbräda och fyll med risnudlar, grönsaker, nötter och koriander. Rulla ihop till tajta rullar och ställ kallt. Dippsåser: Blanda smetana med soja och ställ kallt. Lös upp sockret i limesaften. Tillsätt chili och vitlök.",
     },
   ]);
 

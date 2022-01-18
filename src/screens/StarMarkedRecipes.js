@@ -16,7 +16,7 @@ import { useState } from "react";
 import Card from "../components/Card";
 
 function StarMarkedRecipes({ navigation }) {
-  const [favoritCard, setfavoriteCard] = useState("");
+  const [favoritCard, setfavoriteCard] = useState([]);
 
   displayData = async () => {
     AsyncStorage.getItem("favorite").then((favoriteCard) => {
@@ -50,7 +50,7 @@ function StarMarkedRecipes({ navigation }) {
 
             <FlatList
               horizontal={true}
-              //keyExtractor={(item) => item.key}
+              // keyExtractor={(item) => item.id}
               data={favoritCard}
               renderItem={(item) => (
                 <TouchableOpacity
