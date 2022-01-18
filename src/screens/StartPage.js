@@ -203,11 +203,13 @@ function StartPage({ navigation }) {
                       }}
                       style={styles.img}
                     />
+                    <Text>Veckodag</Text>
+
                     <CardButton
                       onPress={() => pressHandler(item)}
                       title="★ Favoritmarkera"
                       color="#FEB553"
-                      style={{ alignItems: "flex-start" }}
+                      style={{ alignItems: "flex-end" }}
                     />
                   </TouchableOpacity>
                 )}

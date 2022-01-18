@@ -8,21 +8,27 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../components/Logo";
 import Reminders from "../components/Reminders";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function WeeklyRecipes({ navigation }) {
+  const [selectedDay, setselectedDay] = useState([]);
+
   displayData = async () => {
     try {
-      let days = await AsyncStorage.getItem("data.selected");
-      let parsed = JSON.parse(days);
-      alert(days);
+      AsyncStorage.getItem("data.selected").then((selectedDay) => {
+        setselectedDay(selectedDay);
+        JSON.parse(selectedDay);
+      });
     } catch (error) {
       alert(error);
     }
   };
+  useEffect(() => {
+    displayData();
+  }, []);
 
   return (
     <ScrollView>
@@ -51,6 +57,8 @@ function WeeklyRecipes({ navigation }) {
             </View>
             <View style={styles.cardBox}>
               <Text style={styles.titleText}>Veckans recept</Text>
+              <Text>{selectedDay}</Text>
+
               <FlatList
                 horizontal={true}
                 data={displayData}
