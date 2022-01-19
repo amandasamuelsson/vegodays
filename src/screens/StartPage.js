@@ -150,10 +150,17 @@ function StartPage({ navigation }) {
     }
   };
 
-  const removeFavorite = (id) => {
-    setfavoriteList((prevfavoriteList) => {
-      return prevfavoriteList.filter((item) => item.id != id);
-    });
+  const removeFavorite = async (id) => {
+    try {
+      await AsyncStorage.removeItem("favorite");
+      setfavoriteList((prevfavoriteList) => {
+        return prevfavoriteList.filter((item) => item.id != id);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    console.log("Favorit borttagen");
   };
 
   return (
@@ -203,6 +210,7 @@ function StartPage({ navigation }) {
                       }}
                       style={styles.img}
                     />
+
                     <Text>Veckodag</Text>
 
                     <CardButton

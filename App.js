@@ -81,9 +81,14 @@ const App = () => {
           />
           <Stack.Screen
             name="StarMarkedRecipes"
+            options={{ title: "Mina favoriter" }}
             component={StarMarkedRecipes}
           />
-          <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
+          <Stack.Screen
+            name="WeeklyRecipes"
+            component={WeeklyRecipes}
+            options={{ title: "Min vecka" }}
+          />
           <Stack.Screen name="Reminders" component={Reminders} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -127,9 +132,14 @@ const App = () => {
           />
           <Stack.Screen
             name="StarMarkedRecipes"
+            options={{ title: "Mina favoriter" }}
             component={StarMarkedRecipes}
           />
-          <Stack.Screen name="WeeklyRecipes" component={WeeklyRecipes} />
+          <Stack.Screen
+            name="WeeklyRecipes"
+            component={WeeklyRecipes}
+            options={{ title: "Min vecka" }}
+          />
           <Stack.Screen
             name="Reminders"
             component={Reminders}
