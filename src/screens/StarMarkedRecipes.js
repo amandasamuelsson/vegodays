@@ -16,17 +16,29 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 function StarMarkedRecipes({ navigation }) {
-  const [favoritCard, setfavoriteCard] = useState([]);
+  const [favoritCard, setfavoriteCard] = useState("");
 
-  displayData = async () => {
-    await AsyncStorage.getItem("favorite").then((favoriteCard) => {
-      setfavoriteCard(favoriteCard);
-      JSON.parse(favoritCard);
-    });
+  const readData = async () => {
+    try {
+      const userData = await AsyncStorage?.getItem("favorite");
+      if (userData != null) {
+        setfavoriteCard(JSON.parse(userData));
+        console.log("read data:" + JSON.stringify(JSON.parse(userData)));
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
+  // displayData = async () => {
+  //   await AsyncStorage.getItem("favorite").then((favoriteCard) => {
+  //     setfavoriteCard(favoriteCard);
+  //     JSON.parse(favoritCard);
+  //   });
+  // };
+
   useEffect(() => {
-    displayData();
+    readData();
   }, []);
 
   return (
@@ -47,7 +59,6 @@ function StarMarkedRecipes({ navigation }) {
             <View style={styles.weekRecipes}></View>
 
             <FlatList
-              horizontal={true}
               keyExtractor={(item) => item.id}
               data={favoritCard}
               renderItem={({ item }) => (
@@ -56,11 +67,18 @@ function StarMarkedRecipes({ navigation }) {
                   onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
                   <Text style={styles.titleText}>{item.title}</Text>
+
                   <Image
                     source={{
                       uri: item.img,
                     }}
                     style={styles.img}
+                  />
+                  <CardButton
+                    onPress={() => removeFavorite(item.id)}
+                    title="★ Ta bort favoritmarkering"
+                    color="#FEB553"
+                    style={{ alignItems: "flex-start" }}
                   />
                 </TouchableOpacity>
               )}
