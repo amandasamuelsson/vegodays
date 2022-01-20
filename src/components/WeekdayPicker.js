@@ -13,30 +13,37 @@ const Data = [
   {
     id: 1,
     day_name: "Måndag",
+    selected: false,
   },
   {
     id: 2,
     day_name: "Tisdag",
+    selected: false,
   },
   {
     id: 3,
     day_name: "Onsdag",
+    selected: false,
   },
   {
     id: 4,
     day_name: "Torsdag",
+    selected: false,
   },
   {
     id: 5,
     day_name: "Fredag",
+    selected: false,
   },
   {
     id: 6,
     day_name: "Lördag",
+    selected: false,
   },
   {
     id: 7,
     day_name: "Söndag",
+    selected: false,
   },
 ];
 
@@ -48,6 +55,7 @@ export default class DayPicker extends React.Component {
     this.state = {
       selectedItem: null,
       renderData: Data,
+      days: [],
     };
   }
 
@@ -65,17 +73,29 @@ export default class DayPicker extends React.Component {
     }
   };
 
+  
   onPressHandler(id) {
     let renderData = [...this.state.renderData];
     for (let data of renderData) {
       if (data.id == id) {
         data.selected = data.selected == null ? true : !data.selected;
-        AsyncStorage.setItem("data.selected", JSON.stringify(Data));
+        // AsyncStorage.setItem("data.selected", JSON.stringify(renderData));
 
         break;
       }
+      for (let trueData of renderData) {
+        if (trueData.selected === true ) {
+          this.state.days.push(trueData[0]);
+          console.log(this.state.days);
+          // AsyncStorage.setItem("trueData.selected", JSON.stringify(trueData));
+
+          break;
+        }
+      }
+      //if data.selected = true, spara till AsyncStorage. 
+      //Bara de som är true ska sparas och skickas vidare. 
     }
-    this.setState({ renderData });
+      this.setState({ renderData });
   }
 
   render() {
