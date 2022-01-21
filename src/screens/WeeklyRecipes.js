@@ -15,16 +15,15 @@ import Reminders from "../components/Reminders";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CardButton } from "react-native-cards";
 
-
 function WeeklyRecipes({ navigation }) {
   const [selectedDay, setSelectedDay] = useState([]);
 
   const readData = async () => {
     try {
-      const userData = await AsyncStorage?.getItem("trueData.selected");
+      const userData = await AsyncStorage?.getItem("data.selected");
       if (userData != false) {
         setSelectedDay(JSON.parse(userData));
-        console.log("read data:" + JSON.stringify(JSON.parse(userData)));
+        console.log("hej:" + JSON.stringify(JSON.parse(userData)));
       }
     } catch (e) {
       console.log(e);
@@ -44,7 +43,6 @@ function WeeklyRecipes({ navigation }) {
   useEffect(() => {
     readData();
   }, []);
-  
 
   return (
     <ScrollView>
@@ -61,13 +59,15 @@ function WeeklyRecipes({ navigation }) {
           </View>
           <View style={styles.reminderBox}>
             <Text style={styles.titleText}>Påminnelser</Text>
-            <Text style={styles.text}>Vill du aktivera påminnelser för veckan?</Text>
+            <Text style={styles.text}>
+              Vill du aktivera påminnelser för veckan?
+            </Text>
             <View style={styles.reminderSwitch}>
               <Reminders />
             </View>
           </View>
           <View style={styles.recipeBox}>
-            <Text style={styles.titleText}>Veckans recept</Text>
+            <Text style={styles.titleText}>Veckans recept </Text>
             <FlatList
               keyExtractor={(item) => item.id}
               data={selectedDay}
@@ -76,7 +76,7 @@ function WeeklyRecipes({ navigation }) {
                   style={styles.cardStyle}
                   onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
-                  <Text style={styles.cardTitleText}>{item.day_name}</Text>
+                  <Text style={styles.cardTitleText}>{item.title}</Text>
 
                   <Image
                     source={{
@@ -95,12 +95,12 @@ function WeeklyRecipes({ navigation }) {
             />
           </View>
         </ImageBackground>
-          <Pressable
-            style={styles.button}
-            onPress={() => navigation.navigate("StartPage")}
-            >
-            <Text style={styles.buttonText}>Klar</Text>
-          </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("StartPage")}
+        >
+          <Text style={styles.buttonText}>Klar</Text>
+        </Pressable>
       </View>
     </ScrollView>
   );
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   recipeBox: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",  
+    height: "100%",
   },
   cardStyle: {
     width: "100%",
@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-
 });
 
 export default WeeklyRecipes;
