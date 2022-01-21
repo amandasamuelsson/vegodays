@@ -69,14 +69,14 @@ function WeeklyRecipes({ navigation }) {
           <View style={styles.recipeBox}>
             <Text style={styles.titleText}>Veckans recept </Text>
             <FlatList
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.title}
               data={selectedDay}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
                   onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
-                  <Text style={styles.cardTitleText}>{item.title}</Text>
+                  <Text style={styles.cardTitleText}>{item}</Text>
 
                   <Image
                     source={{

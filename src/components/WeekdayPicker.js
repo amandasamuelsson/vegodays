@@ -46,7 +46,7 @@ const Data = [
 function Item({ id, title, selected, onSelect }) {
   return (
     <TouchableOpacity
-      onPress={() => onSelect(id)}
+      onPress={() => onSelect(title)}
       style={[
         styles.item,
         {
@@ -64,9 +64,9 @@ export default function NewDayList() {
   const [selected, setSelected] = React.useState(new Map());
 
   const onSelect = React.useCallback(
-    (id) => {
+    (title) => {
       const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
+      newSelected.set(title, !selected.get(title));
 
       setSelected(newSelected);
       //newSelected.set("test", true);
@@ -100,12 +100,12 @@ export default function NewDayList() {
           <Item
             id={item.id}
             title={item.title}
-            selected={!!selected.get(item.id)}
+            selected={!!selected.get(item.title)}
             onSelect={onSelect}
             style={styles.textStyle}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.title}
         extraData={selected}
       />
     </SafeAreaView>
