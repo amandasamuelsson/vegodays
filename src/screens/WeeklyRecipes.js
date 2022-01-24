@@ -42,8 +42,12 @@ function WeeklyRecipes({ navigation }) {
 
 const recipeRenderer = recipe.map(item => 
   <View key={item.id}>
-    <Text style={styles.cardTitleText}>{item.title}</Text>
-    <Image source={{ uri: item.img, }} style={styles.img} />    
+    <TouchableOpacity
+      onPress={() => navigation.navigate("DetailRecipes", item)}
+    >
+      <Text style={styles.cardTitleText}>{item.title}</Text>
+      <Image source={{ uri: item.img, }} style={styles.img} /> 
+    </TouchableOpacity>   
   </View>
 );
 
@@ -128,7 +132,7 @@ const recipeRenderer = recipe.map(item =>
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
-                  onPress={() => navigation.navigate("DetailRecipes", item)}
+                  // onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
                   {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
                   <Text style={styles.cardTitleText}>{item}</Text>
