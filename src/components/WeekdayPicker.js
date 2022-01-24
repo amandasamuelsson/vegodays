@@ -75,8 +75,8 @@ export default function NewDayList() {
       AsyncStorage.setItem(
         "newSelected",
         JSON.stringify(Array.from(newSelected.entries()))
-        );
-        console.log(newSelected);
+      );
+      console.log(newSelected);
     },
 
     [selected]
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: "#f9c2ff",
-    padding: 20,
+    padding: 25,
     marginVertical: 8,
     marginHorizontal: 16,
   },
