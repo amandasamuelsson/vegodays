@@ -40,10 +40,10 @@ function WeeklyRecipes({ navigation }) {
     });
 };
 
-const recipeRenderer = recipe.map(item =>  
+const recipeRenderer = recipe.map(item => 
   <View key={item.id}>
     <Text style={styles.cardTitleText}>{item.title}</Text>
-    {/* <Image source={{ uri: item.img, }} style={styles.img} />     */}
+    <Image source={{ uri: item.img, }} style={styles.img} />    
   </View>
 );
 
@@ -132,15 +132,8 @@ const recipeRenderer = recipe.map(item =>
                 >
                   {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
                   <Text style={styles.cardTitleText}>{item}</Text>
-
-                  <Image
-                    source={{
-                      uri: item.img,
-                    }}
-                    style={styles.img}
-                  />
                   <View>
-                    {recipeRenderer}
+                    {recipeRenderer[1]}
                   </View>
                   <CardButton
                     onPress={() => pressHandler(item)}
