@@ -14,7 +14,7 @@ import Logo from "../components/Logo";
 import Reminders from "../components/Reminders";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CardButton } from "react-native-cards";
-import axios from 'axios';
+import axios from "axios";
 
 function WeeklyRecipes({ navigation }) {
   const [selectedDay, setSelectedDay] = useState([]);
@@ -26,54 +26,55 @@ function WeeklyRecipes({ navigation }) {
 
   const getData = () => {
     const ENDPOINT = "https://amandasamuelsson.github.io/recipes/recipes.json";
-    axios(ENDPOINT).then((response) => {
+    axios(ENDPOINT)
+      .then((response) => {
         setIsLoading(false);
         console.log("RES", response.data.recipes);
         if (response.data) {
-            setRecipe(response.data.recipes);
+          setRecipe(response.data.recipes);
         } else {
-            console.log("An error happened when getting the recipes");
+          console.log("An error happened when getting the recipes");
         }
-    }).catch(error => {
+      })
+      .catch((error) => {
         setIsLoading(false);
         console.log("An error happened", error);
-    });
-};
+      });
+  };
 
-const recipeRenderer = recipe.map(item => 
-  <View key={item.id}>
-    <TouchableOpacity
-      onPress={() => navigation.navigate("DetailRecipes", item)}
-    >
-      <Text style={styles.cardTitleText}>{item.title}</Text>
-      <Image source={{ uri: item.img, }} style={styles.img} /> 
-    </TouchableOpacity>   
-  </View>
-);
+  const recipeRenderer = recipe.map((item) => (
+    <View key={item.id}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("DetailRecipes", item)}
+      >
+        <Text style={styles.cardTitleText}>{item.title}</Text>
+        <Image source={{ uri: item.img }} style={styles.img} />
+      </TouchableOpacity>
+    </View>
+  ));
 
-// <div key={item.id}>
-//     <h2>
-//         <a href={item.url} target="_blank" rel="noreferrer">
-//             {item.title}
-//         </a>
-//     </h2>
-//     <p>
-//         {item.description}
-//     </p>
-//     <div>
-//         <img src={item.urlToImage} alt=""/>
-//     </div>
-// </div>
+  // <div key={item.id}>
+  //     <h2>
+  //         <a href={item.url} target="_blank" rel="noreferrer">
+  //             {item.title}
+  //         </a>
+  //     </h2>
+  //     <p>
+  //         {item.description}
+  //     </p>
+  //     <div>
+  //         <img src={item.urlToImage} alt=""/>
+  //     </div>
+  // </div>
 
-// const content = isLoading ? ( 
-// <div>Loading..</div>
-// ) : (
-// <div>
-// <h1>Nyheterna</h1>
-// <div>{recipeRenderer}</div>
-// </div>
-// );
-
+  // const content = isLoading ? (
+  // <div>Loading..</div>
+  // ) : (
+  // <div>
+  // <h1>Nyheterna</h1>
+  // <div>{recipeRenderer}</div>
+  // </div>
+  // );
 
   const readData = async () => {
     try {
@@ -135,15 +136,15 @@ const recipeRenderer = recipe.map(item =>
                   // onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
                   {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
-                  <Text style={styles.cardTitleText}>{item}</Text>
-                  <View>
-                    {recipeRenderer[1]}
+                  <View style={styles.dayBox}>
+                    <Text style={styles.dayTitleStyle}>{item}</Text>
+                    <View>{recipeRenderer[1]}</View>
                   </View>
                   <CardButton
                     onPress={() => pressHandler(item)}
                     title="★ Favoritmarkera"
                     color="#FEB553"
-                    style={{ alignItems: "flex-end" }}
+                    style={{ alignItems: "flex-start" }}
                   />
                 </TouchableOpacity>
               )}
@@ -180,10 +181,13 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 28,
     margin: 10,
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
   },
   cardTitleText: {
     fontSize: 20,
-    margin: 10,
+    margin: 5,
   },
   text: {
     margin: 10,
@@ -192,6 +196,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: "100%",
     height: 200,
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
   },
   reminderSwitch: {
     backgroundColor: "#fff",
@@ -202,11 +209,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: "100%",
     height: "100%",
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
   },
   cardStyle: {
     width: "100%",
     marginBottom: 30,
-    backgroundColor: "lightpink",
   },
   img: {
     height: 200,
@@ -236,6 +245,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
+  },
+  dayTitleStyle: {
+    fontSize: 17,
+    paddingBottom: 10,
+  },
+  dayBox: {
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    marginTop: 5,
+    marginBottom: -10,
   },
 });
 
