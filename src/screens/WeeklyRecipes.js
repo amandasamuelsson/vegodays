@@ -14,13 +14,66 @@ import Logo from "../components/Logo";
 import Reminders from "../components/Reminders";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CardButton } from "react-native-cards";
+import axios from 'axios';
 
 function WeeklyRecipes({ navigation }) {
   const [selectedDay, setSelectedDay] = useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [recipe, setRecipe] = React.useState([]);
+  // React.useEffect(() => {
+  //     getData();
+  // }, []);
+
+  const getData = () => {
+    const ENDPOINT = "https://amandasamuelsson.github.io/recipes/recipes.json";
+    axios(ENDPOINT).then((response) => {
+        setIsLoading(false);
+        console.log("RES", response.data.recipes);
+        if (response.data) {
+            setRecipe(response.data.recipes);
+        } else {
+            console.log("An error happened when getting the recipes");
+        }
+    }).catch(error => {
+        setIsLoading(false);
+        console.log("An error happened", error);
+    });
+};
+
+const recipeRenderer = recipe.map(item =>  
+  <View key={item.id}>
+    <Text style={styles.cardTitleText}>{item.title}</Text>
+    {/* <Image source={{ uri: item.img, }} style={styles.img} />     */}
+  </View>
+);
+
+// <div key={item.id}>
+//     <h2>
+//         <a href={item.url} target="_blank" rel="noreferrer">
+//             {item.title}
+//         </a>
+//     </h2>
+//     <p>
+//         {item.description}
+//     </p>
+//     <div>
+//         <img src={item.urlToImage} alt=""/>
+//     </div>
+// </div>
+
+// const content = isLoading ? ( 
+// <div>Loading..</div>
+// ) : (
+// <div>
+// <h1>Nyheterna</h1>
+// <div>{recipeRenderer}</div>
+// </div>
+// );
+
 
   const readData = async () => {
     try {
-      const userData = await AsyncStorage?.getItem("data.selected");
+      const userData = await AsyncStorage?.getItem("newSelected");
       if (userData != false) {
         setSelectedDay(JSON.parse(userData));
         console.log("hej:" + JSON.stringify(JSON.parse(userData)));
@@ -42,6 +95,7 @@ function WeeklyRecipes({ navigation }) {
   // };
   useEffect(() => {
     readData();
+    getData();
   }, []);
 
   return (
@@ -69,13 +123,14 @@ function WeeklyRecipes({ navigation }) {
           <View style={styles.recipeBox}>
             <Text style={styles.titleText}>Veckans recept </Text>
             <FlatList
-              keyExtractor={(item) => item.title}
+              keyExtractor={(item) => item.id}
               data={selectedDay}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
                   onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
+                  {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
                   <Text style={styles.cardTitleText}>{item}</Text>
 
                   <Image
@@ -84,6 +139,9 @@ function WeeklyRecipes({ navigation }) {
                     }}
                     style={styles.img}
                   />
+                  <View>
+                    {recipeRenderer}
+                  </View>
                   <CardButton
                     onPress={() => pressHandler(item)}
                     title="★ Favoritmarkera"

@@ -70,9 +70,10 @@ export default function NewDayList() {
       console.log(JSON.stringify(newSelected));
       // console.log(JSON.stringify);
       AsyncStorage.setItem(
-        "data.selected",
+        "newSelected",
         JSON.stringify(Array.from(newSelected.entries()))
-      );
+        );
+        console.log(newSelected);
     },
 
     [selected]
