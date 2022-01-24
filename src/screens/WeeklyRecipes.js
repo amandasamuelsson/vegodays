@@ -40,7 +40,13 @@ function WeeklyRecipes({ navigation }) {
     });
 };
 
-// const recipeRenderer = recipe.map((item) => 
+const recipeRenderer = recipe.map(item =>  
+  <View key={item.id}>
+    <Text style={styles.cardTitleText}>{item.title}</Text>
+    {/* <Image source={{ uri: item.img, }} style={styles.img} />     */}
+  </View>
+);
+
 // <div key={item.id}>
 //     <h2>
 //         <a href={item.url} target="_blank" rel="noreferrer">
@@ -54,7 +60,6 @@ function WeeklyRecipes({ navigation }) {
 //         <img src={item.urlToImage} alt=""/>
 //     </div>
 // </div>
-// );
 
 // const content = isLoading ? ( 
 // <div>Loading..</div>
@@ -119,14 +124,14 @@ function WeeklyRecipes({ navigation }) {
             <Text style={styles.titleText}>Veckans recept </Text>
             <FlatList
               keyExtractor={(item) => item.id}
-              data={selectedDay, recipe}
+              data={selectedDay}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
                   onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
-                  <Text style={styles.cardTitleText}>{item.day_name}</Text>
-                  <Text style={styles.cardTitleText}>{item.title}</Text>
+                  {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
+                  <Text style={styles.cardTitleText}>{item}</Text>
 
                   <Image
                     source={{
@@ -134,6 +139,9 @@ function WeeklyRecipes({ navigation }) {
                     }}
                     style={styles.img}
                   />
+                  <View>
+                    {recipeRenderer}
+                  </View>
                   <CardButton
                     onPress={() => pressHandler(item)}
                     title="★ Favoritmarkera"
