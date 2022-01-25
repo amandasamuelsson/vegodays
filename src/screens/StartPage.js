@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import Logo from "../components/Logo";
 import { useState } from "react";
-import Card from "../components/Card";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { CardButton } from "react-native-cards";
@@ -182,16 +180,16 @@ function StartPage({ navigation }) {
             >
               <Text style={styles.buttonText}>Starta din vecka</Text>
             </Pressable>
+            <Pressable
+                style={styles.button}
+                onPress={() => navigation.navigate("WeeklyRecipes")}
+              >
+                <Text style={styles.buttonText}>Min vecka</Text>
+            </Pressable>
           </View>
           <View style={styles.startBox}>
             <Text style={styles.titleText}>
-              Veckans recept
-              <Pressable
-                style={styles.link}
-                onPress={() => navigation.navigate("WeeklyRecipes")}
-              >
-                <Text style={styles.linkText}>Visa alla</Text>
-              </Pressable>
+              Alla Vegodays recept
             </Text>
 
             <View style={styles.weekRecipes}>
@@ -211,9 +209,6 @@ function StartPage({ navigation }) {
                       }}
                       style={styles.img}
                     />
-
-                    <Text>Veckodag</Text>
-
                     <CardButton
                       onPress={() => pressHandler(item)}
                       title="★ Favoritmarkera"
@@ -315,6 +310,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   startBox: {
+    paddingTop: 30,
     width: "100%",
     backgroundColor: "#fff",
   },
