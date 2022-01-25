@@ -64,8 +64,20 @@ const App = () => {
               headerShown: false,
             }}
           />
-          <Stack.Screen name="StartPage" component={StartPage} />
-          <Stack.Screen name="OptionDays" component={OptionDays} />
+          <Stack.Screen 
+            name="StartPage" 
+            component={StartPage}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen 
+            name="OptionDays" 
+            component={OptionDays} 
+            options={{
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="DayPicker" component={DayPicker} />
           {/*<Stack.Screen name="OptionPortions" component={OptionPortions} /> */}
           {/* <Stack.Screen name="PortionsPicker" component={PortionsPicker} />*/}
