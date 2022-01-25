@@ -11,23 +11,21 @@ function DetailRecipes({ navigation, route }) {
           }}
           style={styles.img}
         />
-        <CardButton
+        {/* <CardButton
           onPress={() => {}}
           title="★ Favoritmarkera"
           color="#FEB553"
           style={{ alignItems: "flex-start" }}
-        />
+        /> */}
 
         <Text style={styles.titleText}>{route.params.title}</Text>
 
         <Text style={styles.ingredientsText}>
-          {" "}
-          <Text style={{ fontWeight: "bold" }}> Ingredienser: </Text>
+          <Text style={{ fontWeight: "bold" }}>Ingredienser:</Text>
           {"\n"}
           {route.params.ingredients}
         </Text>
         <Text style={styles.ingredientsText}>
-          {" "}
           <Text style={{ fontWeight: "bold" }}>Instruktioner:</Text>
           {"\n"}
           {route.params.instructions}

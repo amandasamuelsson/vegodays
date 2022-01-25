@@ -30,12 +30,18 @@ function StarMarkedRecipes({ navigation }) {
     }
   };
 
-  // displayData = async () => {
-  //   await AsyncStorage.getItem("favorite").then((favoriteCard) => {
-  //     setfavoriteCard(favoriteCard);
-  //     JSON.parse(favoritCard);
-  //   });
-  // };
+  const removeFavorite = async (id) => {
+    try {
+      await AsyncStorage.removeItem("favorite");
+      setfavoriteCard((prevfavoriteCard) => {
+        return prevfavoriteCard.filter((item) => item.id != id);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    console.log("Favorit borttagen");
+  };
 
   useEffect(() => {
     readData();

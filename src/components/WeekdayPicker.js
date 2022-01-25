@@ -49,7 +49,10 @@ function Item({ id, title, selected, onSelect }) {
       onPress={() => onSelect(title)}
       style={[
         styles.item,
-        { backgroundColor: selected ? "#6e3b6e" : "#f9c2ff" },
+        {
+          backgroundColor: selected ? "#508268" : "#e3e3e3",
+          borderRadius: 10,
+        },
       ]}
     >
       <Text style={styles.title}>{title}</Text>
@@ -72,8 +75,8 @@ export default function NewDayList() {
       AsyncStorage.setItem(
         "newSelected",
         JSON.stringify(Array.from(newSelected.entries()))
-        );
-        console.log(newSelected);
+      );
+      console.log(newSelected);
     },
 
     [selected]
@@ -92,6 +95,7 @@ export default function NewDayList() {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        style={{ width: 300 }}
         data={Data}
         renderItem={({ item }) => (
           <Item
@@ -197,18 +201,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: 300,
-    height: 400,
+    color: "#ffffff",
   },
   item: {
     backgroundColor: "#f9c2ff",
-    padding: 20,
+    padding: 25,
     marginVertical: 8,
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
-  },
-  textStyle: {
-    fontSize: 32,
+    flexDirection: "column",
+    textAlign: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
+    fontSize: 20,
   },
 });

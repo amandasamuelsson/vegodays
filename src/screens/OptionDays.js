@@ -24,7 +24,6 @@ function OptionDays({ navigation }) {
         <View style={styles.daysBox}>
           <Text style={styles.titleText}>Välj dagar</Text>
           <Text style={styles.infoText}>
-            {" "}
             Markera de dagar du vill äta vegetariskt och klicka på nästa för att
             gå vidare.
           </Text>
@@ -61,9 +60,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000c0",
   },
   infoText: {
-    marginRight: 20,
-    marginLeft: 20,
+    marginRight: 30,
+    marginLeft: 30,
     marginBottom: 5,
+
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
   },
   image: {
     flex: 1,
@@ -80,8 +83,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "#508268",
     color: "#fff",
-    marginBottom: 70,
-    marginTop: 10,
+    marginTop: 20,
     width: "50%",
   },
   buttonText: {
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 100,
+    paddingTop: 10,
     paddingBottom: 50,
   },
   titleText: {
