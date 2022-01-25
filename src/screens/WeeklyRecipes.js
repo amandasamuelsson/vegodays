@@ -136,16 +136,16 @@ function WeeklyRecipes({ navigation }) {
                   // onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
                   {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
+                  <View>{recipeRenderer[1]}</View>
+
                   <View style={styles.dayBox}>
                     <Text style={styles.dayTitleStyle}>{item}</Text>
-                    <View>{recipeRenderer[1]}</View>
+                    <CardButton
+                      onPress={() => pressHandler(item)}
+                      title="★ Favoritmarkera"
+                      color="#FEB553"
+                    />
                   </View>
-                  <CardButton
-                    onPress={() => pressHandler(item)}
-                    title="★ Favoritmarkera"
-                    color="#FEB553"
-                    style={{ alignItems: "flex-start" }}
-                  />
                 </TouchableOpacity>
               )}
             />
@@ -251,11 +251,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   dayBox: {
+    justifyContent: "space-between",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center",
-    marginTop: 5,
-    marginBottom: -10,
+    margin: 5,
   },
 });
 
