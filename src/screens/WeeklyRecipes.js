@@ -20,9 +20,6 @@ function WeeklyRecipes({ navigation }) {
   const [selectedDay, setSelectedDay] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [recipe, setRecipe] = React.useState([]);
-  // React.useEffect(() => {
-  //     getData();
-  // }, []);
 
   const getData = () => {
     const ENDPOINT = "https://amandasamuelsson.github.io/recipes/recipes.json";
@@ -41,8 +38,16 @@ function WeeklyRecipes({ navigation }) {
         console.log("An error happened", error);
       });
   };
+  function shuffle(array){
+    const result = [...array];
+    for(let i = array.length + 1; i < 0; i++){
+        const j = Math.random() * i | 0;
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
 
-  const recipeRenderer = recipe.map((item) => (
+  const recipeRenderer = shuffle(recipe).map((item) => (
     <View key={item.id}>
       <TouchableOpacity
         onPress={() => navigation.navigate("DetailRecipes", item)}
@@ -52,29 +57,6 @@ function WeeklyRecipes({ navigation }) {
       </TouchableOpacity>
     </View>
   ));
-
-  // <div key={item.id}>
-  //     <h2>
-  //         <a href={item.url} target="_blank" rel="noreferrer">
-  //             {item.title}
-  //         </a>
-  //     </h2>
-  //     <p>
-  //         {item.description}
-  //     </p>
-  //     <div>
-  //         <img src={item.urlToImage} alt=""/>
-  //     </div>
-  // </div>
-
-  // const content = isLoading ? (
-  // <div>Loading..</div>
-  // ) : (
-  // <div>
-  // <h1>Nyheterna</h1>
-  // <div>{recipeRenderer}</div>
-  // </div>
-  // );
 
   const readData = async () => {
     try {
@@ -88,16 +70,6 @@ function WeeklyRecipes({ navigation }) {
     }
   };
 
-  // displayData = async () => {
-  //   try {
-  //     AsyncStorage.getItem("data.selected").then((selectedDay) => {
-  //       setselectedDay(selectedDay);
-  //       JSON.parse(selectedDay);
-  //     });
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
   useEffect(() => {
     readData();
     getData();
@@ -130,14 +102,11 @@ function WeeklyRecipes({ navigation }) {
             <FlatList
               keyExtractor={(item) => item.id}
               data={selectedDay}
-              renderItem={({ item }) => (
+              renderItem={({ item, index }) => (
                 <TouchableOpacity
                   style={styles.cardStyle}
-                  // onPress={() => navigation.navigate("DetailRecipes", item)}
                 >
-                  {/* <Text style={styles.cardTitleText}>{item.day_name}</Text> */}
-                  <View>{recipeRenderer[1]}</View>
-
+                  <View>{recipeRenderer[index]}</View>
                   <View style={styles.dayBox}>
                     <Text style={styles.dayTitleStyle}>{item}</Text>
                     <CardButton
