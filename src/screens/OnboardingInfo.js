@@ -52,8 +52,8 @@ function OnboardingInfo({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    height: 900,
+},
   text: {
     color: "white",
     fontSize: 42,
@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   image: {
-    flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
+    height: "100%",
   },
   box: {
     marginTop: 80,

@@ -53,7 +53,7 @@ function OnboardingStarMarked({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 900,
   },
   text: {
     color: "white",
