@@ -1,4 +1,6 @@
-/*import { 
+/*
+Future development
+import { 
     StyleSheet, 
     Text, 
     View, 

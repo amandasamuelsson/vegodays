@@ -4,7 +4,6 @@ import {
   View,
   ImageBackground,
   Pressable,
-  ScrollView,
 } from "react-native";
 import Logo from "../components/Logo";
 import DayPicker from "../components/WeekdayPicker";
