@@ -178,7 +178,7 @@ function StartPage({ navigation }) {
               style={styles.button}
               onPress={() => navigation.navigate("OptionDays")}
             >
-              <Text style={styles.buttonText}>Starta din vecka</Text>
+              <Text style={styles.buttonText}>Starta min vecka</Text>
             </Pressable>
             <Pressable
                 style={styles.button}
