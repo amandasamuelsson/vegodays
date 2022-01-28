@@ -20,9 +20,6 @@ function OnboardingDays({ navigation }) {
           style={styles.image}
         >
           <View style={styles.box}>
-            {
-              //</View></ImageBackground>Text style={styles.text}>VegoDays </Text>
-            }
             <Logo />
             <Text style={styles.infoText}>
               I appen är det enkelt att välja vilka dagar det passar bäst för just dig
@@ -36,7 +33,6 @@ function OnboardingDays({ navigation }) {
               >
                 <Text style={styles.buttonText}>Nästa</Text>
               </Pressable>
-
               <View style={{ flexDirection: "row" }}>
                 <Text style={styles.stepsMarked}>. </Text>
                 <Text style={styles.stepsMarked}>. </Text>
@@ -96,7 +92,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
   },
-
   button: {
     alignItems: "center",
     justifyContent: "center",

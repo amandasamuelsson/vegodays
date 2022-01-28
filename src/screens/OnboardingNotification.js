@@ -20,9 +20,6 @@ function OnboardingNotification({ navigation }) {
           style={styles.image}
         >
           <View style={styles.box}>
-            {
-              //</View></ImageBackground>Text style={styles.text}>VegoDays </Text>
-            }
             <Logo />
             <Text style={styles.infoText}>
               För att förenkla det ytterligare för dig finns det möjlighet att

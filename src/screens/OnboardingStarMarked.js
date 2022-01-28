@@ -20,9 +20,6 @@ function OnboardingStarMarked({ navigation }) {
           style={styles.image}
         >
           <View style={styles.box}>
-            {
-              //</View></ImageBackground>Text style={styles.text}>VegoDays </Text>
-            }
             <Logo />
             <Text style={styles.infoText}>
               Hittar du ett recept som du tycker lite extra mycket om?
